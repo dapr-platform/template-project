@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	_ "template-project/docs"
 )
 
 var (

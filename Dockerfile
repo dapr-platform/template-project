@@ -1,4 +1,4 @@
-FROM golang:1.22-alpine3.19 as build
+FROM golang:1.22.5-alpine3.19 as build
 RUN echo "http://mirrors.aliyun.com/alpine/v3.19/main" > /etc/apk/repositories \
     && apk add --no-cache git \
     && rm -rf /var/cache/apk/* \
