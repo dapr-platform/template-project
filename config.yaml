@@ -1,0 +1,5 @@
+wechat:
+  mini_programs:
+    app_1:
+      app_id: "${WECHAT_MINI_PROGRAM_APP_ID_1}"
+      app_secret: "${WECHAT_MINI_PROGRAM_APP_SECRET_1}"

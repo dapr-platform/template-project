@@ -1,2 +1,2 @@
 ./swagger.sh
-docker build -t template-project .
+docker build -t wxgateway-service .

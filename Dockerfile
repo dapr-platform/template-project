@@ -1,6 +1,5 @@
-FROM golang:1.22.5-alpine3.19 as build
-RUN echo "http://mirrors.aliyun.com/alpine/v3.19/main" > /etc/apk/repositories \
-    && apk add --no-cache git \
+FROM golang:1.23.1-alpine3.19 as build
+RUN  apk add --no-cache git upx \
     && rm -rf /var/cache/apk/* \
     && rm -rf /root/.cache \
     && rm -rf /tmp/*
@@ -17,12 +16,11 @@ COPY . .
 #RUN go clean -modcache && rm -f go.sum && go mod tidy
 #RUN  rm -f go.sum && go mod tidy
 #RUN swag init --parseDependency --parseInternal --parseDepth 1
-RUN go build -ldflags "-s -w" -o  template-project
-#    && upx -9 template-project
+RUN go build -ldflags "-s -w" -o  wxgateway-service
+#    && upx -9 wxgateway-service
 
 FROM alpine:3.19
-RUN echo "http://mirrors.aliyun.com/alpine/v3.19/main" > /etc/apk/repositories \
-    && apk add --no-cache tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+RUN  apk add --no-cache tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
     && apk del tzdata \
     && rm -rf /var/cache/apk/* \
@@ -31,7 +29,7 @@ RUN echo "http://mirrors.aliyun.com/alpine/v3.19/main" > /etc/apk/repositories \
 
 RUN mkdir /app
 WORKDIR /app
-COPY --from=build /app/template-project .
+COPY --from=build /app/wxgateway-service .
 
 EXPOSE 80
-CMD ["sh","-c","./template-project"]
+CMD ["sh","-c","./wxgateway-service"]

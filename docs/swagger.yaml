@@ -1,0 +1,8 @@
+basePath: /swagger/wxgateway-service
+info:
+  contact: {}
+  description: wxgateway-service API
+  title: wxgateway-service API
+  version: "1.0"
+paths: {}
+swagger: "2.0"

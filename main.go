@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	_ "template-project/docs"
+	_ "wxgateway-service/docs"
 )
 
 var (
@@ -24,10 +24,10 @@ func init() {
 	common.Logger.Debug("use PORT ", PORT)
 }
 
-// @title template-project API
+// @title wxgateway-service API
 // @version 1.0
-// @description template-project API
-// @BasePath /swagger/template-project
+// @description wxgateway-service API
+// @BasePath /swagger/wxgateway-service
 func main() {
 	mux := chi.NewRouter()
 	mux.Handle("/metrics", promhttp.Handler())
